@@ -62,15 +62,21 @@ const Layout = ({ children } : {children : any}) => {
             <div className="sticky top-0 mr-0 pr-0 z-50 w-full h-10">
                 <Header scrolled={scrolled}  />
             </div>
-            <div className="flex space-x-1 space-y-0.5 h-min min-h-max">
+            <div className="flex md:flex-row flex-col space-x-1 space-y-0.5 h-min min-h-max">
               
-              <div className="flex grow min-width-[70%] w-9/12 h-full mb-auto">
+              <div className="flex grow order-last md:order-first 
+                              md:min-width-[70%] md:w-9/12 w-full 
+                              h-full mb-auto">
                   {
                     children
                   }
               </div>
-              <div id='aside' className="sticky w-80 hidden md:block top-10 ml-2 mb-10 relative h-screen">
-                  <div className="w-full h-screen max-h-screen md:w-80 overflow-hidden p-2 pr-0">
+              <div id='aside' className="
+                            md:sticky order-first md:order-last 
+                            md:w-80 xs:w-full sm:w-full md:block 
+                            top-10 ml-2 mb-10 relative 
+                            md:h-screen h-min">
+                  <div className="w-full md:h-screen max-h-screen md:w-80 overflow-hidden p-2 pr-0">
                     <LinkCard  />
                     { 
                       showNav() ? 
