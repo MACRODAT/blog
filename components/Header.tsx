@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 import React, { useEffect, useState } from 'react'
 import { useThemeContext } from '../store/themeProvider'
 import { useSelector, useDispatch, connect } from 'react-redux'

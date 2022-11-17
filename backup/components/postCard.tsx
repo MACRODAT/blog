@@ -1,4 +1,7 @@
 import React from 'react'
+//  @ts-nocheck
+
+
 import moment from 'moment'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -1,3 +1,6 @@
+//  @ts-nocheck
+
+
 import React from 'react'
 import { getPostDetails, getPosts } from '../../services'
 import { PostDetail, Categories, PostWidget, Author, Comments, CommentsForm} 

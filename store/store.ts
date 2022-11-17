@@ -1,3 +1,4 @@
+//  @ts-nocheck
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 import { authSlice } from "./sessionSlice";

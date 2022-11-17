@@ -1,3 +1,4 @@
+//  @ts-nocheck
 import React from 'react'
 import ReactMarkdown from 'react-markdown';
 import { useSelector } from 'react-redux';

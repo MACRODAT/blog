@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 import { request , gql, GraphQLClient } from 'graphql-request';
 import { mockPosts } from '../mock/mock_posts';
 

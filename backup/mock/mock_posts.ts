@@ -1,3 +1,6 @@
+//  @ts-nocheck
+
+
 let d = Date();
 
 export const mockPosts = [

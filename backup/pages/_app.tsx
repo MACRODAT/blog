@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 import React, {useEffect, useState} from 'react';
 import App from 'next/app';
 import { Layout } from '../components';

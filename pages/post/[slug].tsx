@@ -1,3 +1,5 @@
+//  @ts-nocheck
+
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { compileNavigationAlgo, getCategories, getPostDetails } from '../../services';

@@ -1,3 +1,4 @@
+//  @ts-nocheck
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { themes } from "./states";
