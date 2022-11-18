@@ -4,7 +4,8 @@ import React, {useEffect, useState} from 'react';
 import  Layout  from '../components/Layout';
 
 import 'tailwindcss/tailwind.css'
-import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
+// import Font Awesome CSS
 import '../styles/globals.scss';
 
 import { Analytics } from '@vercel/analytics/react';
