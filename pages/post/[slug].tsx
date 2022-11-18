@@ -52,21 +52,7 @@ const PostDetails = ({ post} : {post : any}) => {
   //   links.
   // })
 
-  const Links = {
-    a({as, href, ...otherprops}){
-      return (
-        <Link as={as} href={href}>
-          <a className={theme == 'light' ? 
-                  'text-neutral-900 font-bold hover:underline decoration-dotted'
-                  :
-                  'text-amber-400 font-bold hover:underline decoration-dotted'
-                }
-          
-                {...otherprops} />
-        </Link>
-      )
-    }
-  }
+
 
   const CodeBlock = {
     
@@ -94,6 +80,19 @@ const PostDetails = ({ post} : {post : any}) => {
         </code>
       );
     },
+    a({as, href, ...otherprops}){
+      return (
+        <Link as={as} href={href}>
+          <a className={theme == 'light' ? 
+                  'text-neutral-900 font-bold hover:underline decoration-dotted'
+                  :
+                  'text-amber-400 font-bold hover:underline decoration-dotted'
+                }
+          
+                {...otherprops} />
+        </Link>
+      )
+    },
   };
 
   const renderers = {
@@ -117,17 +116,14 @@ const PostDetails = ({ post} : {post : any}) => {
             :
             ''
           }
-          
-
           <div id="contentpost" className='my-4 md:text-lg
                           '>
             <ReactMarkdown children={post.content} 
                 remarkPlugins={[[remarkToc, {ordered: true}], remarkGfm, remarkHint, remarkMath ]} 
                 rehypePlugins={[rehypeRaw, [rehypeKatex, {strict : false}]]}
                 components={
-                  CodeBlock, Links
+                  CodeBlock
                 } />
-                {/* {post.content} */}
           </div>
     </div>
   )
