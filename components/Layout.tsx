@@ -44,6 +44,7 @@ const Layout = ({ children } : {children : any}) => {
     <div className="w-full h-full m-0 p-0 overflow-hidden" style={styles}>
       <Head>
         <title>NESD ALGORITHMS</title>
+        <meta name="google-site-verification" content="6eaL9fiBZUv9Qss66rr9LnoPyNEv5e5rdfO7_GqQwVc" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
         <link 
