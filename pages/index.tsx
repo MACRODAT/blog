@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import PostCard from '../components/Postcard';
 import Header from '../components/Header';
 import { compileNavigationAlgo, getCategories } from '../services';
@@ -14,8 +13,10 @@ export default function Home({ posts } : {posts : any}){
   
 
   return (
+    
     <main className="flex-1 h-full justify-center items-center 
                       grid overflow-x-hidden min-h-fit md:ml-10">
+   
       <div className='self-center p-2 my-10
                       border border-violet-500/20 border-dashed rounded-3xl 
                       drop-shadow-xl bg-s'>
