@@ -5,8 +5,9 @@ import  Layout  from '../components/Layout';
 
 import 'tailwindcss/tailwind.css'
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
-import '../styles/globals.scss'
+import '../styles/globals.scss';
 
+import { Analytics } from '@vercel/analytics/react';
 
 import type { AppProps } from 'next/app'
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <PersistGate loading={null} persistor={persistor}>
         <Layout>
             <Component  {...pageProps}/>
+            <Analytics />
         </Layout>
       </PersistGate>
     </Provider>
