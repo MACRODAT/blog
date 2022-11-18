@@ -107,7 +107,7 @@ export default function SideNav(){
             }
         return navs.map((el) => builder(el))
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         return ''
       }
     }

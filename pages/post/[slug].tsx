@@ -18,6 +18,7 @@ import remarkHint from 'remark-hint';
 import Collapsible from 'react-collapsible';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import Link from 'next/link';
 // import { getPostDetails, getPosts } from '../../services'
 
 const customStylingCode : React.CSSProperties = {
@@ -50,6 +51,22 @@ const PostDetails = ({ post} : {post : any}) => {
   //   let links = document.getElementById("contentpost")?.getElementsByTagName("a");
   //   links.
   // })
+
+  const Links = {
+    a({as, href, ...otherprops}){
+      return (
+        <Link as={as} href={href}>
+          <a className={theme == 'light' ? 
+                  'text-neutral-900 font-bold hover:underline decoration-dotted'
+                  :
+                  'text-amber-400 font-bold hover:underline decoration-dotted'
+                }
+          
+                {...otherprops} />
+        </Link>
+      )
+    }
+  }
 
   const CodeBlock = {
     
@@ -102,16 +119,16 @@ const PostDetails = ({ post} : {post : any}) => {
           }
           
 
-          <p id="contentpost" className='my-4 md:text-lg
+          <div id="contentpost" className='my-4 md:text-lg
                           '>
             <ReactMarkdown children={post.content} 
-            remarkPlugins={[[remarkToc, {ordered: true}], remarkGfm, remarkHint, remarkMath ]} 
-            rehypePlugins={[rehypeRaw, rehypeKatex]}
-            components={
-              CodeBlock
-            } />
-            {/* {post.content} */}
-          </p>
+                remarkPlugins={[[remarkToc, {ordered: true}], remarkGfm, remarkHint, remarkMath ]} 
+                rehypePlugins={[rehypeRaw, [rehypeKatex, {strict : false}]]}
+                components={
+                  CodeBlock, Links
+                } />
+                {/* {post.content} */}
+          </div>
     </div>
   )
 }
