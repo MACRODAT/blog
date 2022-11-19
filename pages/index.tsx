@@ -1,10 +1,6 @@
 import PostCard from '../components/Postcard';
-import Header from '../components/Header';
 import { compileNavigationAlgo, getCategories } from '../services';
 
-import {
-    faCloudArrowDown
-} from '@fortawesome/free-solid-svg-icons'
 //  @ts-nocheck
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
