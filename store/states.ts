@@ -50,7 +50,7 @@ export const themes = {
     },
     dark : {
         '--color-bg-s' : '#98CE00',
-        '--color-bg-ss' : '#283600',
+        '--color-bg-ss' : '#1c4075',
         '--color-bg-p' : '#001011',
         '--color-fg-p' : '#FFFFFC',
         '--color-fg-e' : '#EEEEED',

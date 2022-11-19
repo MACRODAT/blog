@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 
 const Layout = ({ children } : {children : any}) => {
 
-  let [scrolled, setScrolled] = useState(false)
+  let [scrolled, setScrolled] = useState(false);
   
   const router_ = useRouter();
 
@@ -37,7 +37,7 @@ const Layout = ({ children } : {children : any}) => {
   let showNav = () => {
     // console.log(router.route)
     // console.log( ['/','/about','/login'].includes(router_.route))
-    return ! ['/','/about','/login'].includes(router_.route)
+    return ! ['/','/about','/login','/account'].includes(router_.route)
   }
 
   return (
@@ -78,7 +78,7 @@ const Layout = ({ children } : {children : any}) => {
                               md:min-width-[70%] md:w-9/12 w-full 
                               h-full mb-auto">
                   {
-                    children
+                    children  
                   }
               </div>
               <div id='aside' className="

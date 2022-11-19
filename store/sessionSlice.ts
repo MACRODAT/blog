@@ -6,11 +6,15 @@ import { HYDRATE } from "next-redux-wrapper";
 // Type for our state
 export interface AuthState {
   authState: boolean;
+  loggedIn : boolean;
+  logData : {};
 }
 
 // Initial state
 const initialState: AuthState = {
   authState: false,
+  loggedIn : false,
+  logData : {},
 };
 
 // Actual Slice
@@ -22,6 +26,12 @@ export const authSlice = createSlice({
     // Action to set the authentication status
     setAuthState(state, action) {
       state.authState = action.payload;
+    },
+    setLogin(state, payload){
+        state.loggedIn = payload.payload;
+    },
+    setUserFromGoogleAuth(state, payload){
+        state.logData = payload.payload;
     },
 
     // Special reducer for hydrating the state. Special case for next-redux-wrapper
@@ -37,7 +47,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setAuthState } = authSlice.actions;
+export const { setAuthState, setLogin, setUserFromGoogleAuth } = authSlice.actions;
 
 export const selectAuthState = (state: AppState) => state.auth.authState;
 
