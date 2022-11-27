@@ -83,21 +83,21 @@ const Layout = ({ children } : {children : any}) => {
             <div className="sticky top-0 mr-0 pr-0 z-50 w-full h-10">
                 <Header scrolled={scrolled}  />
             </div>
-            <div className="flex md:flex-row flex-col space-x-1 space-y-0.5 h-min min-h-max">
+            <div className="flex lg:flex-row flex-col space-x-1 space-y-0.5 h-min min-h-max">
               
-              <div className="flex grow order-last md:order-first 
-                              md:min-width-[70%] md:w-9/12 w-full 
+              <div className="flex grow order-last lg:order-first 
+                              lg:min-width-[70%] lg:w-9/12 w-full 
                               h-full mb-auto">
                   {
                     children  
                   }
               </div>
               <div id='aside' className="
-                            md:sticky order-first md:order-last 
-                            md:w-80 xs:w-full sm:w-full md:block 
+                            lg:sticky order-first lg:order-last 
+                            lg:w-80 xs:w-full sm:w-full lg:block 
                             top-10 ml-2 mb-10 relative 
-                            md:h-screen h-min">
-                  <div className="w-full md:h-screen max-h-screen md:w-80 overflow-hidden p-2 pr-0">
+                            lg:h-screen h-min">
+                  <div className="w-full lg:h-screen max-h-screen lg:w-80 overflow-hidden p-2 pr-0">
                     <LinkCard  />
                     { 
                       showNav() ? 
@@ -108,8 +108,8 @@ const Layout = ({ children } : {children : any}) => {
 
             </div>
 
-            <div id='footer' className=''>
-              <div className='md:hidden block'>
+            <div id='footer' className='block mt-6 pb-3 pt-2 bottom-0 border-t border-dotted border-teal-800/40'>
+              <div className='lg:hidden block'>
                   {
                     theme == 'dark' ? 
                     <i 	
@@ -118,12 +118,12 @@ const Layout = ({ children } : {children : any}) => {
                         onClick={switchTheme}> 
                     </i>
                     :
-                    <i className='fa-solid fa-moon mx-3 my-0 text-md cursor-pointer hover:animate-pulse float-right' 
+                    <i className='fa-solid fa-moon mx-3 my-0 text-lg cursor-pointer hover:animate-pulse float-right' 
                         onClick={switchTheme}> </i>
 
                   }
               </div>
-              <h3 className='text-right mr-3 ml-2 text-teal-800/40'>
+              <h3 className='text-right mr-3 ml-2'>
                   MACRODAT 2023
               </h3>
           </div>
