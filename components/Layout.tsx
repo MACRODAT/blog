@@ -9,6 +9,7 @@ import SideNav from './sidenav'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchNavIfNoNav } from '../store/userSlice'
 import { useRouter } from 'next/router'
+import { setThemeState } from '../store/themeSlice'
 
 const Layout = ({ children } : {children : any}) => {
 
@@ -33,6 +34,16 @@ const Layout = ({ children } : {children : any}) => {
    
 
   }, [t])
+
+  let theme = useSelector(state => state.theming.current);
+
+	const switchTheme = () => {
+		if (theme == 'light'){
+			dispatch(setThemeState('dark'))
+		}else{
+			dispatch(setThemeState('light'))
+		}
+	}
 
   let showNav = () => {
     // console.log(router.route)
@@ -96,8 +107,30 @@ const Layout = ({ children } : {children : any}) => {
               </div>
 
             </div>
+
+            <div id='footer' className=''>
+              <div className='md:hidden block'>
+                  {
+                    theme == 'dark' ? 
+                    <i 	
+                        
+                        className='fa-solid fa-sun mx-3 my-0 cursor-pointer hover:animate-pulse float-right'
+                        onClick={switchTheme}> 
+                    </i>
+                    :
+                    <i className='fa-solid fa-moon mx-3 my-0 text-md cursor-pointer hover:animate-pulse float-right' 
+                        onClick={switchTheme}> </i>
+
+                  }
+              </div>
+              <h3 className='text-right mr-3 ml-2 text-teal-800/40'>
+                  MACRODAT 2023
+              </h3>
+          </div>
         </div>
+        
       </div>
+
   )
 }
 
