@@ -80,6 +80,7 @@ export async function getPostDetails(slug : String){
                     name
                     content
                     excerpt
+                    postdifficulty
                     featureImage {
                       url
                     }              

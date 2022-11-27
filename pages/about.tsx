@@ -56,8 +56,6 @@ const About = () => {
             <br />
             <br />
             Want to discuss an idea, collaborate on a project, or just plain talk ? Contact me and I will be only delighted to get in contact !
-
-
         </p>
     </div>
   )

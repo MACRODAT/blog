@@ -52,6 +52,33 @@ const PostDetails = ({ post} : {post : any}) => {
   //   links.
   // })
 
+  let findIcon = (difficulty : String) => {
+    let className_ = (theme == 'light');
+    if (difficulty == undefined){
+      return <i className="fa-solid fa-face-smirking"></i>
+    }
+
+    difficulty.trim();
+    switch (difficulty.toUpperCase()){
+      case 'EASY':
+        return <i className={className_ ? "fa-solid fa-face-smile text-lime-700" : 
+                                          "fa-solid fa-face-smile text-lime-400"}
+                ></i>
+      case 'MEDIUM':
+        return <i className={className_ ? "fa-solid fa-face-surprise text-orange-500" : 
+                                          "fa-solid fa-face-surprise text-orange-400/90"}
+                ></i>
+      case 'HARD':
+        return <i className={className_ ? "fa-solid fa-face-meh text-red-700/80" : 
+                                          "fa-solid fa-face-meh text-red-400/70"}
+                ></i>
+      case 'EXPERT':
+        return <i className={className_ ? "fa-solid fa-skull text-rose-900" : 
+                                          "fa-solid fa-skull text-rose-400"}
+                ></i>
+    }
+    return <i className="fa-solid fa-face-smirking"></i>
+  } 
 
 
   const CodeBlock = {
@@ -64,11 +91,11 @@ const PostDetails = ({ post} : {post : any}) => {
         <SyntaxHighlighter
           style={theme == 'dark' ? twilight : atomOneLight}
           language={match[1]}
-          wrapLines={true}
+          wrapLines={true} wrapLongLines={false}
           PreTag="div" 
           // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
           showLineNumbers={numLines > 3}
-          customStyle={{overflow: 'hidden', width: '100%', margin: '3px', display: 'block', float: 'left'}}
+          customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', display: 'block', float: 'left'}}
           {...props}
           
         >
@@ -108,7 +135,25 @@ const PostDetails = ({ post} : {post : any}) => {
                   >
 
           <h1 className='text-2xl md:text-4xl text-center'>{post.name}</h1>  
-          <h2 className='text-xl md:text-2xl italic text-center'>{post.excerpt}</h2>  
+          <h2 className='text-xl md:text-2xl italic text-center'> {post.excerpt}</h2>  
+          {
+              post.postdifficulty != 'NONE' ?
+              <button 
+                    className={theme == 'light' ? 
+                    'rounded-lg bg-slate-200/60 border border-slate-300 p-2 float-right'
+                    :
+                    'rounded-lg bg-slate-700/60 border border-slate-500 p-2 float-right text-slate-100'
+                    }>
+                {findIcon(post.postdifficulty)}
+                <h2 className='text-md md:text-xl '>
+                  {post.postdifficulty}
+                </h2>
+            </button>
+            :
+            ''
+          }
+          
+
           <hr className='my-4' />
           {
             showImage ?
