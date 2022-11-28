@@ -11,13 +11,13 @@ import { store } from "../pages/_app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDfQyuuDxl-X494Jm6WrLmwZXIqXKI0cDQ",
-  authDomain: "algoblog-2c1d7.firebaseapp.com",
-  projectId: "algoblog-2c1d7",
-  storageBucket: "algoblog-2c1d7.appspot.com",
-  messagingSenderId: "1058612979456",
-  appId: "1:1058612979456:web:836ecb41cd49d789d875e5",
-  measurementId: "G-6ZP0VVVY30"
+  apiKey: process.env.NEXT_PUBLIC_apiKey,
+  authDomain: process.env.NEXT_PUBLIC_authDomain,
+  projectId: process.env.NEXT_PUBLIC_projectId,
+  storageBucket: process.env.NEXT_PUBLIC_storageBucket,
+  messagingSenderId: process.env.NEXT_PUBLIC_messagingSenderId,
+  appId: process.env.NEXT_PUBLIC_appId,
+  measurementId: process.env.NEXT_PUBLIC_measurementId
 };
 
 // Initialize Firebase
