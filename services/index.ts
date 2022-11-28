@@ -5,6 +5,8 @@ import { mockPosts } from '../mock/mock_posts';
 
 
 const graphqlAPI : string = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string;
+console.log(graphqlAPI)
+
 let lastCategory : string = '';
 let setLastCategory = (cat) => { lastCategory = cat };
 export {

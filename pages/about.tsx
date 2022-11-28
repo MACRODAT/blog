@@ -6,6 +6,7 @@ import React from 'react'
 const About = () => {
   let rt = useRouter()
 
+  let envTest = process.env.NEXT_PUBLIC_ENV_TEST;  
 
   return (
     <div className='
@@ -56,7 +57,10 @@ const About = () => {
             <br />
             <br />
             Want to discuss an idea, collaborate on a project, or just plain talk ? Contact me and I will be only delighted to get in contact !
+            <br />
+            <br />
         </p>
+        <p className='text-xs text-right'>API: {envTest}</p>
     </div>
   )
 }

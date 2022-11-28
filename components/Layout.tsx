@@ -14,6 +14,8 @@ import { setThemeState } from '../store/themeSlice'
 const Layout = ({ children } : {children : any}) => {
 
   let [scrolled, setScrolled] = useState(false);
+
+  const name = 'MACRODAT';
   
   const router_ = useRouter();
 
@@ -123,7 +125,7 @@ const Layout = ({ children } : {children : any}) => {
 
                   }
               </div>
-              <h3 className='text-right mr-3 ml-2'>
+              <h3 className='text-right mr-3 ml-2 '>
                   MACRODAT 2023
               </h3>
           </div>
