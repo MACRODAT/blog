@@ -1,12 +1,11 @@
 //  @ts-nocheck
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { compileNavigationAlgo, getCategories, getPostDetails } from '../../services';
 
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
-import CustomLink from '../../components/custom/CustomLink';
 
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 // import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -19,6 +18,8 @@ import Collapsible from 'react-collapsible';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import Link from 'next/link';
+import { isDocumentLiked, likeDocument } from '../../mock/firebase';
+import { Transition } from '@headlessui/react';
 // import { getPostDetails, getPosts } from '../../services'
 
 const customStylingCode : React.CSSProperties = {
@@ -40,6 +41,7 @@ const highlightLine = (lineNumber: number, markLines: number[], color: string = 
 
 const PostDetails = ({ post} : {post : any}) => {
   // console.log(post)
+  const [documentLiked, setDocumentLiked] = useState(false);
 
   let theme = useSelector(state => state.theming.current);
   let showImage = true;
@@ -47,10 +49,32 @@ const PostDetails = ({ post} : {post : any}) => {
     showImage = false;
   }
 
-  // useEffect(() => {
-  //   let links = document.getElementById("contentpost")?.getElementsByTagName("a");
-  //   links.
-  // })
+  let isDocumentLiked_ = false;
+
+  let likeDocumentAndUpdateForm = () => {
+    likeDocument(post.name, documentLiked).then((res, rej) => {
+      UpdateForm();
+    })
+  }
+
+  let UpdateForm = () => isDocumentLiked().then((res,rej) => {
+    if (res.exists){
+      let likedDocs = res.data().documentNames;
+      if (likedDocs !== undefined ){
+        setDocumentLiked(likedDocs.includes(post.name));
+      }
+    }
+    else{
+      if (documentLiked){
+        setDocumentLiked(false);
+      }
+    }
+  }).catch((e) => console.log(e));
+
+  setTimeout(() => {
+    UpdateForm();
+  }, 100);
+
 
   let findIcon = (difficulty : String) => {
     let className_ = (theme == 'light');
@@ -140,15 +164,64 @@ const PostDetails = ({ post} : {post : any}) => {
               post.postdifficulty != 'NONE' ?
               <button 
                     className={theme == 'light' ? 
-                    'rounded-lg bg-slate-200/60 border border-slate-300 p-2 float-right'
+                    'rounded-lg bg-slate-200/60 border border-slate-300 p-2 float-right h-20'
                     :
-                    'rounded-lg bg-slate-700/60 border border-slate-500 p-2 float-right text-slate-100'
+                    'rounded-lg bg-slate-700/60 border border-slate-500 p-2 float-right text-slate-100 h-20'
                     }>
                 {findIcon(post.postdifficulty)}
                 <h2 className='text-md md:text-xl '>
                   {post.postdifficulty}
                 </h2>
             </button>
+            :
+            ''
+          }
+          {
+              post.postdifficulty != 'NONE' ?
+              <button 
+                    onClick={() => likeDocumentAndUpdateForm(post.link)}
+                    className={
+                      documentLiked ? 
+                      (
+                          theme == 'light' ? 
+                          'rounded-lg bg-lime-800/70 border border-lime-300 p-2 float-right \
+                          mr-2 h-20 hover:bg-lime-800/100 text-lime-100  transition duration-500 ease-in'
+                          :
+                          'rounded-lg bg-lime-700/60 border border-lime-500 p-2 float-right \
+                          text-lime-100 mr-2 h-20 hover:bg-lime-600/50 transition duration-500 ease-in '
+                      )
+                      :
+                      (
+                        theme == 'light' ? 
+                        'rounded-lg bg-slate-200/60 border border-slate-300 p-2 float-right \
+                        mr-2 h-20 hover:bg-slate-300/50 transition duration-500 ease-in'
+                        :
+                        'rounded-lg bg-slate-700/60 border border-slate-500 p-2 float-right \
+                        text-slate-100 mr-2 h-20 hover:bg-slate-600/50 transition duration-500 ease-in'
+                      )
+                    }>
+                      {
+                        !documentLiked ?
+                        (
+                          theme == 'light' ?
+                            <i className='fa-regular fa-thumbs-up'></i>
+                            :
+                            <i className="fa-solid fa-thumbs-up fadeOut"></i>
+                        )
+                        :
+                        (
+                          theme == 'light' ?
+                            <i className='fa-regular fa-heart'></i>
+                            :
+                            <i className="fa-solid fa-heart fadeOut"></i>
+                        )
+                      }
+                <h2 className='text-md md:text-xl '>
+                  {
+                    documentLiked ? "Happy!" : "Like Post"
+                  }
+                </h2>
+              </button>
             :
             ''
           }
@@ -161,7 +234,7 @@ const PostDetails = ({ post} : {post : any}) => {
             :
             ''
           }
-          <div id="contentpost" className='my-4 md:text-lg
+          <div id="contentpost" className='my-4
                           '>
             <ReactMarkdown children={post.content} 
                 remarkPlugins={[[remarkToc, {ordered: true}], remarkGfm, remarkHint, remarkMath ]} 

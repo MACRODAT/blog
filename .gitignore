@@ -40,3 +40,14 @@ yarn-error.log*
 
 #markdowns
 markdowns
+
+#VIDEOS
+VIDEOS
+
+/env.local
+/.gitignore
+/.env/.env
+/.firebase/hosting.cHVibGlj.cache
+/.firebaserc
+/firebase.json
+/server.js

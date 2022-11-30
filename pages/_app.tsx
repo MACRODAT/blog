@@ -21,6 +21,8 @@ import {PersistGate} from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist'
 import {Provider, useDispatch} from 'react-redux';
 import Script from 'next/script';
+import { Html } from 'next/document';
+import Head from 'next/head';
 
 
 
@@ -31,10 +33,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   store = makeStore();
   let persistor = persistStore(store);
   
+  let loadingUI = <h1>Loading, please wait...</h1>;
+  
   return (
-    <>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={loadingUI} persistor={persistor}>
           <Layout>
               <Component  {...pageProps}/>
               <Analytics />
@@ -51,10 +54,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                 `
                 }
               </Script>
+              
           </Layout>
         </PersistGate>
       </Provider>
-    </>
   )
 }
 

@@ -65,13 +65,25 @@ const Header = ({scrolled} :
 	};
 
 	useEffect(( ) => {
-		console.log(user);
 		if (user){
 			setLoggedInState(true);
 			dispatch(setLogin(true));
 			dispatch(setUserFromGoogleAuth(user));
 		}
 	}, [user]);
+
+	// auth.onAuthStateChanged((user) => {
+	// 	if (user == undefined || user == null){
+	// 	  setLoggedInState(false);
+	// 	  dispatch(setLogin(false));
+	// 	  dispatch(setUserFromGoogleAuth(null));
+	// 	}
+	// 	else{
+	// 		setLoggedInState(true);
+	// 		dispatch(setLogin(true));
+	// 		dispatch(setUserFromGoogleAuth(user));
+	// 	}
+	// })
 
 	useEffect(() => {
 		setLoggedInState(loggedIn_)

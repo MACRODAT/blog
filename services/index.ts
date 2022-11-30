@@ -4,7 +4,7 @@ import { request , gql, GraphQLClient } from 'graphql-request';
 
 
 const graphqlAPI : string = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT as string;
-console.log(graphqlAPI)
+// console.log(graphqlAPI)
 
 let lastCategory : string = '';
 let setLastCategory = (cat) => { lastCategory = cat };
@@ -79,6 +79,7 @@ export async function getPostDetails(slug : String){
                 posts(where: { name : $slug}) {
                     createdAt
                     name
+                    link
                     content
                     excerpt
                     postdifficulty
@@ -104,6 +105,7 @@ export async function getIndexPostAlgo(){
                 posts(where: {link: "indexpostalgo"}) {
                     createdAt
                     name
+                    link
                     content
                     excerpt
                     featureImage {
@@ -128,6 +130,7 @@ export async function getIndexKickstart(){
                 posts(where: {link: "indexkickstart"}) {
                     createdAt
                     name
+                    link
                     content
                     excerpt
                     featureImage {

@@ -1,11 +1,12 @@
-// @import url("https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" );
+@import url("https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" );
 // @import url("./imports/katex.min.css");
 
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
-// @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,355;0,400;0,423;0,500;0,712;0,900;1,253;1,400&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,355;0,400;0,423;0,500;0,712;0,900;1,253;1,400&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,355;0,400;0,423;0,500;0,712;0,900;1,253;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,355;0,400;0,423;0,500;0,712;0,900;1,253;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
 
 @tailwind base;
 @tailwind components;
@@ -211,13 +212,16 @@ ul {
 }
 
 #contentpost{
+  font-size: calc(16px * var(--fontSizeMultiplier));
+  font-weight: calc(300 * var(--fontSizeMultiplier));
+
   h1 {
-    font-size: 32px;
-    font-weight: 900;
-    line-height: 32px;
-    letter-spacing: 4px;
-    margin-top: 38px;
-    margin-bottom: 15px;
+    font-size: calc(32px * var(--fontSizeMultiplier));
+    font-weight: calc(900 * var(--fontSizeMultiplier));
+    line-height: calc(32px * var(--fontSizeMultiplier));
+    letter-spacing: calc(4px * var(--fontSizeMultiplier));
+    margin-top: calc(38px * var(--fontSizeMultiplier));
+    margin-bottom: calc(15px * var(--fontSizeMultiplier));
 
     border-bottom: 1px dotted var(--color-fg-p);
     cursor: pointer;
@@ -228,36 +232,37 @@ ul {
   }
 
   h2{
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32px;
-    letter-spacing: 4px;
-    margin-top: 28px;
-    margin-bottom: 7px;
+    font-size: calc(24px * var(--fontSizeMultiplier));
+    font-weight: calc(700 * var(--fontSizeMultiplier));
+    line-height: calc(32px * var(--fontSizeMultiplier));
+    letter-spacing: calc(4px * var(--fontSizeMultiplier));
+    margin-top: calc(28px * var(--fontSizeMultiplier));
+    margin-bottom: calc(7px * var(--fontSizeMultiplier));
   }
 
   h3{
-    font-size: 18px;
+
+    font-size: calc(18px * var(--fontSizeMultiplier));
     font-weight: 600;
-    line-height: 32px;
-    letter-spacing: 4px;
-    margin-top: 28px;
-    margin-bottom: 7px;
+    line-height: calc(32px * var(--fontSizeMultiplier));
+    letter-spacing: calc(4px * var(--fontSizeMultiplier));
+    margin-top: calc(28px * var(--fontSizeMultiplier));
+    margin-bottom: calc(7px * var(--fontSizeMultiplier));
   }
 
   h4 {
-    font-size: 16px;
+    font-size: calc(16px * var(--fontSizeMultiplier));
     font-weight: 500;
-    line-height: 22px;
-    letter-spacing: 3px;
-    margin-top: 18px;
-    margin-bottom: 5px;
+    line-height: calc(22px * var(--fontSizeMultiplier));
+    letter-spacing: calc(3px * var(--fontSizeMultiplier));
+    margin-top: calc(18px * var(--fontSizeMultiplier));
+    margin-bottom: calc(5px * var(--fontSizeMultiplier));
   }
 
   blockquote {
     border-left: 1px solid var(--color-fg-a) !important;
-    padding-left: 10px;
-    margin-top: 4px;
+    padding-left: calc(10px * var(--fontSizeMultiplier));
+    margin-top: calc(4px * var(--fontSizeMultiplier));
     margin-bottom: 4px;
     margin-left: 10px;
     font-weight: 600;
@@ -265,7 +270,7 @@ ul {
   }
 
   p::first-letter {
-    font-size: medium;
+    font-size: x-large;
     font-weight: 500;
     // font-style: italic;
     margin-right: 0px;
