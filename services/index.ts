@@ -147,3 +147,28 @@ export async function getIndexKickstart(){
         return _res.posts[0];
     }, (_err) => console.log("error -> " + _err));
 }
+export async function getIndexDeepLearning(){
+    // console.log(lastCategory)
+    const graphQLClient = new GraphQLClient(graphqlAPI);
+    const query = gql`
+            query GetPostMain() {
+                posts(where: {link: "indexdeeplearning"}) {
+                    createdAt
+                    name
+                    link
+                    content
+                    excerpt
+                    featureImage {
+                      url
+                    }
+                }
+            }
+    `;
+
+
+    const  result =  graphQLClient.request(query);
+    return result.then((_res) => {
+        // console.log(_res)
+        return _res.posts[0];
+    }, (_err) => console.log("error -> " + _err));
+}
