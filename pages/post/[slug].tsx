@@ -156,10 +156,16 @@ const PostDetails = ({ post} : {post : any}) => {
                                 max-w-[50%]" 
                       :
                       "rounded-lg drop-shadow-3xl \
-                                float-right my-4 ml-1 mr-3 hover:drop-shadow-3xl-h transition duration-150 ease-in \
+                                float-right my-4 ml-5 mr-1 hover:drop-shadow-3xl-h transition duration-150 ease-in \
                                 max-w-[50%]" 
                     }
                     {...otherprops} />
+    },
+    h3({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h3 {...otherprops}>{children}</h3>
+              </>
     }
   };
 
