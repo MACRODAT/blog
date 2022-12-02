@@ -6,18 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // that is animation class
-      animation: {
-        fade: 'fadeOut 0.5s ease-in-out',
-      },
-
-      // that is actual animation
-      keyframes: theme => ({
-        fadeOut: {
-          '0%': { backgroundColor: theme('colors.red.300') },
-          '100%': { backgroundColor: theme('colors.transparent') },
-        },
-      }),
+      dropShadow: {
+        '3xl': '1px 4px 5px rgba(210, 240, 210, 0.25)',
+        '3xl-h': '4px 8px 9px rgba(210, 240, 210, 0.35)',
+      }
     },
   },
   plugins: [],

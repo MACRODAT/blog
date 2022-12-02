@@ -20,6 +20,7 @@ import rehypeKatex from 'rehype-katex';
 import Link from 'next/link';
 import { isDocumentLiked, likeDocument } from '../../mock/firebase';
 import { Transition } from '@headlessui/react';
+import Image from 'next/image';
 // import { getPostDetails, getPosts } from '../../services'
 
 const customStylingCode : React.CSSProperties = {
@@ -117,9 +118,10 @@ const PostDetails = ({ post} : {post : any}) => {
           language={match[1]}
           wrapLines={true} wrapLongLines={false}
           PreTag="div" 
+          
           // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
           showLineNumbers={numLines > 3}
-          customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', display: 'block', float: 'left'}}
+          customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', marginTop: '10px', marginBottom: '15px', display: 'block', float: 'left'}}
           {...props}
           
         >
@@ -144,6 +146,21 @@ const PostDetails = ({ post} : {post : any}) => {
         </Link>
       )
     },
+    img({src, alt, ...otherprops}){
+      return <img src={src} alt={alt} 
+
+                    className={
+                      theme == 'light' ?
+                      "rounded-lg drop-shadow-lg \
+                                float-right my-4 ml-1 mr-3 hover:drop-shadow-2xl \
+                                max-w-[50%]" 
+                      :
+                      "rounded-lg drop-shadow-3xl \
+                                float-right my-4 ml-1 mr-3 hover:drop-shadow-3xl-h transition duration-150 ease-in \
+                                max-w-[50%]" 
+                    }
+                    {...otherprops} />
+    }
   };
 
   const renderers = {
