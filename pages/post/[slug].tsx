@@ -166,6 +166,36 @@ const PostDetails = ({ post} : {post : any}) => {
                 <hr className='w-full opacity-0' />
                 <h3 {...otherprops}>{children}</h3>
               </>
+    },
+    h1({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h1 {...otherprops}>{children}</h1>
+              </>
+    },
+    h2({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h2 {...otherprops}>{children}</h2>
+              </>
+    },
+    h4({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h4 {...otherprops}>{children}</h4>
+              </>
+    },
+    h5({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h5 {...otherprops}>{children}</h5>
+              </>
+    },
+    h6({children, ...otherprops}){
+      return <>
+                <hr className='w-full opacity-0' />
+                <h6 {...otherprops}>{children}</h6>
+              </>
     }
   };
 
