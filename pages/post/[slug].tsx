@@ -111,22 +111,55 @@ const PostDetails = ({ post} : {post : any}) => {
     code({ node, inline, className, children, ...props }) {
       const match = /language-(\w+)/.exec(className || '');
       const numLines = children[0].split('\n').length
+      const [showCode, setShowCode] = useState(false);
       // console.log(numLines)
       return !inline && match ? (
-        <SyntaxHighlighter
-          style={theme == 'dark' ? twilight : atomOneLight}
-          language={match[1]}
-          wrapLines={true} wrapLongLines={false}
-          PreTag="div" 
-          
-          // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
-          showLineNumbers={numLines > 3}
-          customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', marginTop: '10px', marginBottom: '15px', display: 'block', float: 'left'}}
-          {...props}
-          
-        >
-          {String(children).replace(/\n$/, '')}
-        </SyntaxHighlighter>
+        <>
+          {
+            (numLines > 4) ?
+            <div 
+              className={
+                theme == 'light' ?
+                "bg-sky-500/20 p-2 rounded-lg cursor-pointer"
+                :
+                "bg-sky-700 p-2 rounded-lg cursor-pointer"
+              }
+              customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', 
+                      marginTop: '3px', marginBottom: '5px', display: 'block', float: 'left'}}
+              onClick={() => setShowCode(!showCode)}
+            >
+              <i class="fa-solid fa-code mx-3"></i> 
+              {
+                showCode ?
+                  "Hide code"
+                  :
+                  "Show code"
+              }
+            </div>
+            :
+            ''
+          }
+          {
+            showCode ?
+              <SyntaxHighlighter
+                style={theme == 'dark' ? twilight : atomOneLight}
+                language={match[1]}
+                wrapLines={true} wrapLongLines={false}
+                PreTag="div" 
+                
+                // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
+                showLineNumbers={numLines > 3}
+                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', float: 'left'}}
+                className='new-box'
+                {...props}
+                
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+              :
+              <></>
+          }
+        </>
       ) : (
         <code className={className} {...props}>
           {children}
