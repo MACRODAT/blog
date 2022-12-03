@@ -33,10 +33,10 @@ export const getCategories = async () => {
 export const compileNavigationAlgo = async () => {
     const query = gql`
         query MyQuery {
-            posts {
+            posts(first:5000){
                 name
             }
-            postsConnection {
+            postsConnection(first:5000) {
                 edges {
                     node {
                         name

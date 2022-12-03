@@ -5,12 +5,14 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
 
+let selectedNav_ = "";
 
 export default function SideNav(){
   // let [user, _] = useUserContext();
   let [menus, setMenus] = useState(new Map<String, boolean>());
   let [flag, setFLag] = useState(false);
   let nav_ = useSelector(state => state.user.navigation);
+
   // if (nav_ == undefined || nav_ == null || nav_ == []){
   //   let data = await compileNavigationAlgo();
   // }
@@ -45,7 +47,7 @@ export default function SideNav(){
             if (posts2.get(_post) != undefined && posts2.get(_post) != ''){
               Array.from(posts2.get(_post)).forEach(post => {
                 allposts.push(post);
-                pusher(post, posts2, allposts);
+                // pusher(post, posts2, allposts);
               })
             }
           } 
@@ -63,10 +65,19 @@ export default function SideNav(){
                     menus.set(el , false); 
                   }
                   let children = findAllNodes(el);
-                  return <li key={el} className='w-full rounded-md ml-2 grid grid-cols-5'
-                            onClick={() => {
-                              menus.set(el, !menus.get(el));
+                  // console.log(children)
+                  return <li key={el} className={
+                                    el == selectedNav_ ?  
+                                    'w-full rounded-md ml-2 grid grid-cols-5 bg-slate-600/40'
+                                    :
+                                    'w-full rounded-md ml-2 grid grid-cols-5'
+                                  }
+                            onClick={(e) => {
+                              menus = menus.set(el, !menus.get(el));
+                              // menus.set(el, !menus.get(el));
+                              // console.log(el)
                               setMenus(new Map(menus));
+                              e.stopPropagation();
                             }}
                         >
                           <p 
@@ -74,6 +85,7 @@ export default function SideNav(){
                             onClick={(e) => {
                               // navigate to this link
                               router.push('/post/' + el)
+                              selectedNav_ = el;
                               e.stopPropagation()
                             }}>
                             {el}
@@ -93,7 +105,7 @@ export default function SideNav(){
 
                           {
                             menus.get(el) ?
-                              <ul className='col-span-5'>
+                              <ul className='col-span-5 new-box'>
                               {
                                 children.map((el2) => {
                                   return builder(el2)
@@ -112,35 +124,17 @@ export default function SideNav(){
       }
     }
   }
-
-  // return (
-  //   <div id='sidenav'
-  //     className='bg-p fg-p text-sm md:text-lg
-  //             p-1 m-1 rounded-l-md text-center
-  //             right-0 mr-0
-  //             w-full
-              
-  //                 '
-  //     >
-  //       <div className="dividerGradient"></div>
-  //       <TreeMenu data={treeData} /> 
-        
-  //   </div>
-    
-  // )
  
   return (
     <div id="sidenav"
         className='bg-p border border-slate-200/30 fg-p text-sm md:text-lg
                 p-1 m-1 rounded-l-md text-center
                 right-0 mr-0
-                w-full
-                
-                    '
+                w-full'
         >
             {
               (nav === null || nav === undefined) ? '...' : (
-                <ul className='marker:text-sky-400'>
+                <ul className='marker:text-sky-400 transition-all ease-in duration-150'>
                     <li key={'1'} id='focused' className='hover:bg-slate-400 bg-slate-200'>{category}</li>
                     {
                       compiler()
