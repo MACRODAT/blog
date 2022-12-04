@@ -124,7 +124,7 @@ const PostDetails = ({ post} : {post : any}) => {
                 :
                 "bg-sky-700 p-2 rounded-lg cursor-pointer"
               }
-              customStyle={{overflow: 'auto', overflowY: 'hidden', width: '100%', margin: '3px', 
+              style={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', 
                       marginTop: '3px', marginBottom: '5px', display: 'block', float: 'left'}}
               onClick={() => setShowCode(!showCode)}
             >
@@ -149,7 +149,7 @@ const PostDetails = ({ post} : {post : any}) => {
                 
                 // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
                 showLineNumbers={numLines > 3}
-                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '95%', margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', float: 'left'}}
+                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', float: 'left'}}
                 className='new-box'
                 {...props}
                 
