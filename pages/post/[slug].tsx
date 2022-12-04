@@ -44,7 +44,7 @@ const PostDetails = ({ post} : {post : any}) => {
   // console.log(post)
   const [documentLiked, setDocumentLiked] = useState(false);
 
-  const [screenWidth, setScreenWidth] = useState(1000);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   let theme = useSelector(state => state.theming.current);
   let showImage = true;
