@@ -44,6 +44,8 @@ const PostDetails = ({ post} : {post : any}) => {
   // console.log(post)
   const [documentLiked, setDocumentLiked] = useState(false);
 
+  const [screenWidth, setScreenWidth] = useState(1000);
+
   let theme = useSelector(state => state.theming.current);
   let showImage = true;
   if (post.featureImage == undefined || post.featureImage.url == undefined){
@@ -125,10 +127,11 @@ const PostDetails = ({ post} : {post : any}) => {
                 "bg-sky-700 p-2 rounded-lg cursor-pointer"
               }
               style={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', 
-                      marginTop: '3px', marginBottom: '5px', display: 'block', float: 'left'}}
+                      marginTop: '3px', marginBottom: '5px', display: 'block', 
+                      fontSize: Math.floor(12 + (12 * screenWidth / 1200))}}
               onClick={() => setShowCode(!showCode)}
             >
-              <i class="fa-solid fa-code mx-3"></i> 
+              <i className="fa-solid fa-code mx-3"></i> 
               {
                 showCode ?
                   "Hide code"
@@ -148,8 +151,10 @@ const PostDetails = ({ post} : {post : any}) => {
                 PreTag="div" 
                 
                 // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
-                showLineNumbers={numLines > 3}
-                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', float: 'left'}}
+                showLineNumbers={numLines > 3 && screenWidth > 700}
+                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', 
+                              margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', 
+                              fontSize: Math.floor(22 * screenWidth / 1200)}}
                 className='new-box'
                 {...props}
                 
@@ -235,6 +240,11 @@ const PostDetails = ({ post} : {post : any}) => {
   const renderers = {
     h1: Collapsible
   };
+
+  addEventListener("resize", (event) => {
+    setScreenWidth(window.innerWidth)
+  });
+
 
   return (
     <div className={theme == 'light' ? 
