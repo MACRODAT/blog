@@ -348,7 +348,7 @@ const PostDetails = ({ post} : {post : any}) => {
                               <div className="border border-sky-200/10 rounded-md my-2">
                                 <Disclosure.Button className="flex w-full justify-between rounded-lg bgA
                                                               px-4 py-2 text-left text-lg font-medium 
-                                                              hover:bg-sky-200/10 focus:outline-none focus-visible:ring 
+                                                              hover:text-sky-500/90 focus:outline-none focus-visible:ring 
                                                               focus-visible:ring-sky-500 focus-visible:ring-opacity-75
                                                               
                                                               ">
@@ -360,10 +360,17 @@ const PostDetails = ({ post} : {post : any}) => {
                                     } h-5 w-5 text-sky-500`}
                                   />
                                 </Disclosure.Button>
-                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                  {c.excerpt}
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-md text-gray-500 
+                                                            flex flex-row w-full
+                                                            place-content-between
+                                                            ">
+                                  <p className=''>
+                                    {c.excerpt}
+                                  </p>
                                   <button 
-                                      className='p-2 m-1 text-center bg-sky-300/30 rounded-full block min-w-[20%]'
+                                      className='p-2 m-1 text-center bg-sky-300/30 
+                                                  rounded-full block min-w-[20%]
+                                                  '
                                       onClick={() => rt.push('/post/' + c.name)}
                                       >
                                     Visit
