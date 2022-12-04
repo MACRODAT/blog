@@ -85,6 +85,10 @@ export async function getPostDetails(slug : String){
                     postdifficulty
                     featureImage {
                       url
+                    }
+                    children {
+                        name
+                        excerpt
                     }              
                 }
             }
@@ -111,6 +115,10 @@ export async function getIndexPostAlgo(){
                     featureImage {
                       url
                     }
+                    children {
+                        name
+                        excerpt
+                    }
                 }
             }
     `;
@@ -135,6 +143,11 @@ export async function getIndexKickstart(){
                     excerpt
                     featureImage {
                       url
+                    }
+                    children {
+                        name
+                        excerpt
+                        link
                     }
                 }
             }

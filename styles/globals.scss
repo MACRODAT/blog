@@ -227,6 +227,16 @@ ul {
   vertical-align: text-top;
 }
 
+.bgP{
+  background-color: var(--color-bg-p);
+  color: var(--color-fg-p);
+}
+
+.bgI{
+  background-color: var(--color-fg-a);
+  color: var(--color-bg-s);
+}
+
 #contentpost{
   font-size: calc(16px * var(--fontSizeMultiplier));
   font-weight: calc(300 * var(--fontSizeMultiplier));

@@ -19,8 +19,9 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import Link from 'next/link';
 import { isDocumentLiked, likeDocument } from '../../mock/firebase';
-import { Transition } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 // import { getPostDetails, getPosts } from '../../services'
 
 const customStylingCode : React.CSSProperties = {
@@ -47,6 +48,7 @@ const PostDetails = ({ post} : {post : any}) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   let theme = useSelector(state => state.theming.current);
+  let rt = useRouter();
   let showImage = true;
   if (post.featureImage == undefined || post.featureImage.url == undefined){
     showImage = false;
@@ -128,7 +130,7 @@ const PostDetails = ({ post} : {post : any}) => {
               }
               style={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', 
                       marginTop: '3px', marginBottom: '5px', display: 'block', 
-                      fontSize: Math.floor(12 + (12 * screenWidth / 1200))}}
+                      fontSize: Math.min(22, Math.floor(12 + (12 * screenWidth / 1200)))}}
               onClick={() => setShowCode(!showCode)}
             >
               <i className="fa-solid fa-code mx-3"></i> 
@@ -154,7 +156,7 @@ const PostDetails = ({ post} : {post : any}) => {
                 showLineNumbers={numLines > 3 && screenWidth > 700}
                 customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', 
                               margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', 
-                              fontSize: Math.floor(22 * screenWidth / 1200)}}
+                              fontSize: Math.min(22, Math.floor(22 * screenWidth / 1200))}}
                 className='new-box'
                 {...props}
                 
@@ -338,7 +340,44 @@ const PostDetails = ({ post} : {post : any}) => {
                 components={
                   CodeBlock
                 } />
+            <h1 className='my-4'>Read Also </h1>
+                  {
+                    post.children.map(c => (
+                          <Disclosure>
+                            {({ open }) => (
+                              <div className="border border-sky-200/10 rounded-md my-2">
+                                <Disclosure.Button className="flex w-full justify-between rounded-lg bgA
+                                                              px-4 py-2 text-left text-lg font-medium 
+                                                              hover:bg-sky-200/10 focus:outline-none focus-visible:ring 
+                                                              focus-visible:ring-sky-500 focus-visible:ring-opacity-75
+                                                              
+                                                              ">
+
+                                  <span>{c.name}</span>
+                                  <i
+                                    className={`${
+                                      open ? 'fa-solid fa-arrow-down rotate-180 transform' : 'fa-solid fa-arrow-down '
+                                    } h-5 w-5 text-sky-500`}
+                                  />
+                                </Disclosure.Button>
+                                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                                  {c.excerpt}
+                                  <button 
+                                      className='p-2 m-1 text-center bg-sky-300/30 rounded-full block min-w-[20%]'
+                                      onClick={() => rt.push('/post/' + c.name)}
+                                      >
+                                    Visit
+                                  </button>
+                                </Disclosure.Panel>
+                              </div>
+                            )}
+                          </Disclosure>
+                    ))
+                  }
+                  
+                   
           </div>
+          
     </div>
   )
 }
