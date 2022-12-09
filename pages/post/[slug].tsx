@@ -124,12 +124,20 @@ const PostDetails = ({ post} : {post : any}) => {
             <div 
               className={
                 theme == 'light' ?
-                "bg-sky-500/20 p-2 rounded-lg cursor-pointer"
+                ( showCode ?
+                  "border-r-2 border-l-2 border-pink-500 bg-pink-500/10 p-2 rounded-t-lg cursor-pointer transition duration-150 mb-0"
+                  :
+                  "border-r-2 border-l-2 border-sky-500 p-2 rounded-lg cursor-pointer transition duration-150"
+                )
                 :
-                "bg-sky-700 p-2 rounded-lg cursor-pointer"
+                ( showCode ?
+                  "border-r-2 border-l-2 border-pink-500 bg-pink-500/10 p-2 rounded-t-lg cursor-pointer transition duration-150 mb-0"
+                  :
+                  "border-r-2 border-l-2 border-sky-500 p-2 rounded-lg cursor-pointer transition duration-150"
+                )
               }
               style={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', 
-                      marginTop: '3px', marginBottom: '5px', display: 'block', 
+                      marginTop: '3px', marginBottom: theme == 'light' ? '0' : '4px', display: 'block', 
                       fontSize: Math.min(22, Math.floor(12 + (12 * screenWidth / 1200)))}}
               onClick={() => setShowCode(!showCode)}
             >
@@ -155,7 +163,7 @@ const PostDetails = ({ post} : {post : any}) => {
                 // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
                 showLineNumbers={numLines > 3 && screenWidth > 700}
                 customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', 
-                              margin: '3px', marginTop: '5px', marginBottom: '15px', display: 'block', 
+                              margin: '3px', marginTop: '0', marginBottom: '15px', display: 'block', 
                               fontSize: Math.min(22, Math.floor(22 * screenWidth / 1200))}}
                 className='new-box'
                 {...props}
@@ -187,6 +195,8 @@ const PostDetails = ({ post} : {post : any}) => {
       )
     },
     img({src, alt, ...otherprops}){
+      let s : String = alt;
+      let transparentImage = (s.endsWith("png") && s.startsWith("s"));
       return <img src={src} alt={alt} 
 
                     className={
@@ -195,9 +205,14 @@ const PostDetails = ({ post} : {post : any}) => {
                                 float-right my-4 ml-1 mr-3 hover:drop-shadow-2xl \
                                 max-w-[50%]" 
                       :
+                      (transparentImage ?
+                      "invert float-right my-4 ml-5 mr-1 hover:drop-shadow-3xl-h\
+                                max-w-[60%]" 
+                      :
                       "rounded-lg drop-shadow-3xl \
                                 float-right my-4 ml-5 mr-1 hover:drop-shadow-3xl-h transition duration-150 ease-in \
                                 max-w-[50%]" 
+                      )
                     }
                     {...otherprops} />
     },
@@ -394,7 +409,6 @@ export default PostDetails
 export async function getStaticProps({params}){
   // console.log(params)
   const data = (await getPostDetails(params.slug)) || "";
-  // console.log(data)
 
   return {
     props : { post : data }
@@ -420,10 +434,6 @@ export async function getStaticPaths(){
   Array.from(categories).forEach(cat => {
     pusher(cat);
   });
-  // return {
-  //   paths : [],
-  //   fallback: false,
-  // }
 
   return {
     paths : allposts.map((post : any) =>  ({params : { slug : post }})),
