@@ -20,9 +20,11 @@ import rehypeKatex from 'rehype-katex';
 import Link from 'next/link';
 import { isDocumentLiked, likeDocument } from '../../mock/firebase';
 import { Disclosure } from '@headlessui/react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 // import { getPostDetails, getPosts } from '../../services'
+
+import Carousel from 'react-gallery-carousel';
+import 'react-gallery-carousel/dist/index.css';
 
 const customStylingCode : React.CSSProperties = {
   overflow: 'hidden !important'
@@ -113,14 +115,58 @@ const PostDetails = ({ post} : {post : any}) => {
   const CodeBlock = {
     
     code({ node, inline, className, children, ...props }) {
+      // carousel ?
+      let carousel = children[0].startsWith("carousel");
+      if (carousel){
+        let images : Array<Object>= [];
+        let split_ = children[0].split('\n');
+        let len_ = (split_.length);
+        let i = 0;
+        for (i = 0; i < len_; i++){
+          const element = split_[i];
+          const attbr = undefined;
+          if (element){
+            attbr = element.split('|');
+          }
+          console.log(attbr)
+          if (attbr && attbr.length > 1){
+            images.push({
+              src : attbr[0].split("=")[1],
+              alt : attbr[1].split("=")[1],
+              // caption : attbr[1].split("=")[1],
+              size: '120'
+            })
+          }
+        }
+        console.log(images)
+        return(
+          <Carousel images={images} 
+                    isLoop={false} 
+                    swipeThreshold={0}
+                    hasMediaButton={false}
+                    hasSizeButton={false}
+                    hasDotButtons={true}
+                    hasCaptions='bottom'
+                    hasThumbnails={false}
+                    style={{
+                            backgroundColor: 'rgba(120,120,120,0.1)',
+                            maxHeight: '700px',
+                            maxWidth: '100%',
+                            margin: 'auto'
+                          }}
+                    
+                    ></Carousel>
+        )
+      }
+
       const match = /language-(\w+)/.exec(className || '');
       const numLines = children[0].split('\n').length
-      const [showCode, setShowCode] = useState(false);
+      const [showCode, setShowCode] = useState(numLines < 10);
       // console.log(numLines)
       return !inline && match ? (
         <>
           {
-            (numLines > 4) ?
+            (numLines > 9) ?
             <div 
               className={
                 theme == 'light' ?
@@ -136,7 +182,7 @@ const PostDetails = ({ post} : {post : any}) => {
                   "border-r-2 border-l-2 border-sky-500 p-2 rounded-lg cursor-pointer transition duration-150"
                 )
               }
-              style={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', margin: '3px', 
+              style={{overflow: 'auto', overflowY: 'hidden', width: '95%', maxWidth: '100%', margin: '3px', 
                       marginTop: '3px', marginBottom: theme == 'light' ? '0' : '4px', display: 'block', 
                       fontSize: Math.min(22, Math.floor(12 + (12 * screenWidth / 1200)))}}
               onClick={() => setShowCode(!showCode)}
@@ -162,9 +208,9 @@ const PostDetails = ({ post} : {post : any}) => {
                 
                 // lineProps={(line: number) => highlightLine(line, [1,2,3], props.highlightColor)}
                 showLineNumbers={numLines > 3 && screenWidth > 700}
-                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '90%', maxWidth: '90%', 
+                customStyle={{overflow: 'auto', overflowY: 'hidden', width: '95%', maxWidth: '100%', 
                               margin: '3px', marginTop: '0', marginBottom: '15px', display: 'block', 
-                              fontSize: Math.min(22, Math.floor(22 * screenWidth / 1200))}}
+                              fontSize: Math.max(13,Math.min(19, Math.floor(19 * screenWidth / 1200)))}}
                 className='new-box'
                 {...props}
                 
@@ -197,6 +243,12 @@ const PostDetails = ({ post} : {post : any}) => {
     img({src, alt, ...otherprops}){
       let s : String = alt;
       let transparentImage = (s.endsWith("png") && s.startsWith("s"));
+      if (transparentImage){
+        // render a carousel
+        const images = [9, 8, 7, 6, 5].map((number) => ({
+          src: `https://placedog.net/${number}00/${number}00?id=${number}`
+        }));
+      }
       return <img src={src} alt={alt} 
 
                     className={
