@@ -138,22 +138,49 @@ const PostDetails = ({ post} : {post : any}) => {
             })
           }
         }
-        console.log(images)
+        let makeTheme = () => {
+          if (theme == 'light'){
+            return {
+                backgroundColor: 'rgba(120,120,120,0.1)',
+                maxHeight: '700px',
+                maxWidth: '100%',
+                margin: 'auto'
+              }
+          }
+          return {
+            backgroundColor: 'transparent',
+            maxHeight: '700px',
+            maxWidth: '100%',
+            margin: 'auto',
+            filter: 'invert(1)'
+          }
+        }
         return(
+          
+          
           <Carousel images={images} 
                     isLoop={false} 
-                    swipeThreshold={0}
+                    swipeThreshold={0.1}
                     hasMediaButton={false}
                     hasSizeButton={false}
                     hasDotButtons={true}
                     hasCaptions='bottom'
                     hasThumbnails={false}
-                    style={{
-                            backgroundColor: 'rgba(120,120,120,0.1)',
-                            maxHeight: '700px',
-                            maxWidth: '100%',
-                            margin: 'auto'
-                          }}
+                    objectFit={'contain'}
+                    className='Carousel_'
+                    rightIcon={
+                      (theme == 'light') ?
+                      <i className='fa-regular fa-circle-right' />
+                      :
+                      <i className='fa-regular fa-circle-right text-red-800' />
+                    }
+                    leftIcon={
+                      (theme == 'light') ?
+                      <i className='fa-regular fa-circle-left' />
+                      :
+                      <i className='fa-regular fa-circle-left text-red-800' />
+                    }
+                    style={makeTheme()}
                     
                     ></Carousel>
         )
