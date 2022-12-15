@@ -434,7 +434,7 @@ const PostDetails = ({ post} : {post : any}) => {
                 components={
                   CodeBlock
                 } />
-            <h1 className='my-4'>Read Also </h1>
+            <h1 className='my-4'>{post.children.length > 0 ? "Read Also" : ""} </h1>
                   {
                     post.children.map(c => (
                           <Disclosure>
