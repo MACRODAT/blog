@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export default function(req, res) {
+export default function(req : any, res : any) {
   const id = req.query.id;
   const filePath = path.join(process.cwd(), `/public/sitemap.xml`);
   console.log(filePath)
