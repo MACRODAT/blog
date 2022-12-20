@@ -11,6 +11,6 @@ export default function(req : any, res : any) {
     res.setHeader('Content-Type', 'text/xml');
     res.send(imageBuffer);
   } catch (e) {
-    res.status(400).json({ error: true, message: 'Ressource not found' });
+    res.status(400).json({ error: true, message: e });
   }
 }
