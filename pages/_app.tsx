@@ -33,7 +33,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   store = makeStore();
   let persistor = persistStore(store);
   
-  let loadingUI = <h1>Loading, please wait...</h1>;
+  let loadingUI = (
+    <div style={{backgroundColor: '#440066', color: '#F5B09F', width: '100vw', height: '100vh'}}>
+      <h1 style={{textAlign: 'center', verticalAlign: 'center'}}>Loading, please wait...</h1>
+    </div>
+  );
   
   return (
       <Provider store={store}>
