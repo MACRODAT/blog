@@ -26,6 +26,8 @@ import { useRouter } from 'next/router';
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
 
+import { writeFile, writeFileSync } from 'fs';
+
 const customStylingCode : React.CSSProperties = {
   overflow: 'hidden !important'
 }
@@ -502,9 +504,15 @@ export async function getStaticPaths(){
   // console.log(posts2)
 
   let allposts = []
+  let sitemap = "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>"
+  let date = (new Date).toISOString()
   let pusher = (_post) => {
     if (posts2.get(_post) != undefined && posts2.get(_post) != ''){
       Array.from(posts2.get(_post)).forEach(post => {
+        let urler = "https://algoblog.vercel.app/post/" + encodeURIComponent(post)
+        sitemap += "\n\t<url>\n\t\t<loc>\n\t\t\t" 
+                    + urler + "\n\t\t</loc>\n\t\t<lastmod>\n\t\t\t" 
+                    + date + "\n\t\t</lastmod>\n\t</url>\n" 
         allposts.push(post);
         pusher(post);
       })
@@ -513,6 +521,13 @@ export async function getStaticPaths(){
   Array.from(categories).forEach(cat => {
     pusher(cat);
   });
+  
+  sitemap += "</urlset>"
+  writeFileSync("public/sitemap.xml", sitemap, {
+    encoding: 'utf-8',
+    flag: 'w'
+  });
+  
 
   return {
     paths : allposts.map((post : any) =>  ({params : { slug : post }})),
