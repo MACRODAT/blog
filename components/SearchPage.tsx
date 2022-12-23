@@ -4,8 +4,9 @@ import { compileNavigationAlgo, getCategories } from '../services';
 
 //  @ts-nocheck
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchCard from './SearchCard';
+import { setSearchFocus } from '../store/userSlice';
 
 export default function SearchPage(){
 
@@ -25,6 +26,7 @@ export default function SearchPage(){
         // console.log(_res)
     }, [_res]);
     
+    let dispatch = useDispatch();
 
     return (
     
@@ -34,6 +36,8 @@ export default function SearchPage(){
             <div className='self-center p-2 my-10
                             border border-violet-500/20 border-dashed rounded-3xl 
                             drop-shadow-xl bg-s'>
+
+                <i className='fa-solid fa-close' onClick={() => dispatch(setSearchFocus(false))} />
                 <h2 className='my-auto text-xl text-center font-regular font2 font-bold text-[#120024]'>
                     <i className='fa-solid fa-search mr-3' />
                     {
