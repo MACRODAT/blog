@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchNavIfNoNav } from '../store/userSlice'
 import { useRouter } from 'next/router'
 import { setThemeState } from '../store/themeSlice'
+import SearchNav from './Search'
+import SearchPage from './SearchPage'
 
 const Layout = ({ children } : {children : any}) => {
 
@@ -61,6 +63,12 @@ const Layout = ({ children } : {children : any}) => {
     return ! ['/','/about','/login','/account'].includes(router_.route)
   }
 
+  let [isSearchFocused, setSearchFocus] = useState(false);
+  let _searchfocus = useSelector(state => state.user.searchFocus);
+  useEffect( () => {
+    setSearchFocus(_searchfocus)
+  }, [_searchfocus]);
+
   return (
     <div className="w-full h-full m-0 p-0 overflow-hidden" style={stylers}>
       <Head>
@@ -92,14 +100,21 @@ const Layout = ({ children } : {children : any}) => {
                 <Header scrolled={scrolled}  />
             </div>
             <div className="flex lg:flex-row flex-col space-x-1 space-y-0.5 h-min min-h-max">
+              {
+                isSearchFocused ? 
+                        <SearchPage /> 
+                        : 
+                        (
+                          <div className="flex grow order-last lg:order-first 
+                                          lg:min-width-[70%] lg:w-9/12 w-full 
+                                          h-full mb-auto">
+                              {
+                                children  
+                              }
+                          </div>
+                        )
+              }
               
-              <div className="flex grow order-last lg:order-first 
-                              lg:min-width-[70%] lg:w-9/12 w-full 
-                              h-full mb-auto">
-                  {
-                    children  
-                  }
-              </div>
               <div id='aside' className="
                             lg:sticky order-first lg:order-last 
                             lg:w-80 xs:w-full sm:w-full lg:block 
@@ -107,6 +122,7 @@ const Layout = ({ children } : {children : any}) => {
                             lg:h-screen h-min">
                   <div className="w-full lg:h-screen max-h-screen lg:w-80 overflow-hidden p-2 pr-0">
                     <LinkCard  />
+                    <SearchNav />
                     { 
                       showNav() ? 
                         <SideNav /> : ""
