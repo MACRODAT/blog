@@ -37,7 +37,7 @@ export default function SearchNav(){
                     placeholder='search for...'
 
                     onFocus={() => dispatch(setSearchFocus(true))}
-                    onBlur={() => dispatch(setSearchFocus(false))}
+                    // onBlur={() => dispatch(setSearchFocus(false))}
 
                     onChange={(e) => dispatch(setSearchText(e.target.value))}
 

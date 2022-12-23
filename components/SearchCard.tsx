@@ -27,11 +27,13 @@ const SearchCard = ({name, description, featureImage, link}) => {
                     hover:shadow-slate-900/40 hover:ease-out
                     '
           key = {name}
-          onClick={() => {  
+          onClick={(e) => {  
             // user = Object.assign({}, user, {category : name})
             // dispatch(setCategory(name));
             let nn = encodeURI(link)
+            console.log('/post/' + nn)
             router.push('/post/' + nn);
+            e.stopPropagation();
           }}
             style={{
                 backgroundImage: 'linear-gradient(140deg, var(--color-bg-p) 35% , rgba(18,0,36,0)), url(' + featureImage + ')'}}

@@ -126,7 +126,7 @@ class searchEngine
             }
         }
         t = t.sort((e,f) => f[0] - e[0]);
-        t = t.map(e => e[1]).slice(0, 5);
+        t = t.map(e => e[1].split('.')[0]).slice(0, 5);
         return t;
     }
 }
