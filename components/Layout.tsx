@@ -11,6 +11,8 @@ import { setThemeState } from '../store/themeSlice'
 import SearchNav from './Search'
 import SearchPage from './SearchPage'
 
+import {  setSearchFocus as sf } from '../store/userSlice';
+
 const Layout = ({ children } : {children : any}) => {
 
   let [scrolled, setScrolled] = useState(false);
@@ -70,7 +72,15 @@ const Layout = ({ children } : {children : any}) => {
   }, [_searchfocus]);
 
   return (
-    <div className="w-full h-full m-0 p-0 overflow-hidden" style={stylers}>
+    <div className="w-full h-full m-0 p-0 overflow-hidden" style={stylers}
+              onClick={
+                    (e) => { 
+                                  if ( isSearchFocused ) {
+                                    dispatch(sf(false));
+                                  } 
+                      }
+                    }
+          >
       <Head>
         <title>NESD ALGORITHMS</title>
         <meta name="google-site-verification" content="6eaL9fiBZUv9Qss66rr9LnoPyNEv5e5rdfO7_GqQwVc" />
@@ -119,12 +129,14 @@ const Layout = ({ children } : {children : any}) => {
                             lg:sticky order-first lg:order-last 
                             lg:w-80 xs:w-full sm:w-full lg:block 
                             top-10 ml-2 mb-10 relative 
-                            lg:h-screen h-min">
+                            lg:h-screen h-min"
+                            onClick={(e) => e.stopPropagation()}
+                            >
                   <div className="w-full lg:h-screen max-h-screen lg:w-80 overflow-hidden p-2 pr-0">
                     <LinkCard  />
                     <SearchNav />
                     { 
-                      showNav() ? 
+                      showNav() && !isSearchFocused ? 
                         <SideNav /> : ""
                     }
                   </div>

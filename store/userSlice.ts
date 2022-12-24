@@ -63,10 +63,7 @@ class searchEngine
         sr.forEach(s => {
             if (s.trim().length > 2){
                 let gb = 0;
-                // lb = bsearch.ge(this.data, s, (a,b) => {
-                //     console.log(a[0],(b))
-                //     return String(a[0]) < b;
-                // })
+
                 gb = bsearch.le(this.data, s, (a,b) => {
                     return a > b;
                 });
@@ -77,7 +74,7 @@ class searchEngine
                     }
                     i++;
                 }
-                console.log(i - gb);
+                // console.log(i - gb);
                 if (i - gb < 20){
                     let i = gb + 1;
                     while (i < this.data.length){
@@ -99,23 +96,7 @@ class searchEngine
                     }
                     
                 }
-                // console.log(i,gb);
-                // console.log(this.data[gb][0]);
-                // console.log(lb, ' --- ', gb)
-                // for (i = 0; i < this.data.length; i++){
-
-                // }
-                // if (this.data[s] !== undefined){
-                //     // console.log(Object.entries(this.data[s]));
-                //     Object.entries(this.data[s]).forEach((key,val) => {
-                //         try{
-
-                //             rs[parseInt(key[0])] += key[1]; 
-                //         }catch{}
-                //         // console.log(key);
-                //         // console.log(key[0]);
-                //     });
-                // }
+               
             }
         });
         let t = [];
@@ -126,7 +107,11 @@ class searchEngine
             }
         }
         t = t.sort((e,f) => f[0] - e[0]);
-        t = t.map(e => e[1].split('.')[0]).slice(0, 5);
+        try{
+            t = t.map(e => { try { return e[1].split('.')[0]} catch { return ''} }  ).slice(0, 5);
+        }catch{
+            t = []
+        }
         return t;
     }
 }

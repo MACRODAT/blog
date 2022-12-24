@@ -33,11 +33,13 @@ export default function SearchPage(){
         <div className="flex-1 h-full justify-center items-center 
                         grid overflow-x-hidden min-h-fit md:ml-10 drop-shadow-[0_35px_35px_rgba(26,220,89,0.1)]">
     
-            <div className='self-center p-2 my-10
+            <div className='self-center p-4 my-10
                             border border-violet-500/20 border-dashed rounded-3xl 
-                            drop-shadow-xl bg-s'>
+                            drop-shadow-3xl bg-s'
+                onClick={(e) => e.stopPropagation()}
+                            >
 
-                <i className='fa-solid fa-close' onClick={() => dispatch(setSearchFocus(false))} />
+                <i className='fa-solid fa-close cursor-pointer' onClick={() => dispatch(setSearchFocus(false))} />
                 <h2 className='my-auto text-xl text-center font-regular font2 font-bold text-[#120024]'>
                     <i className='fa-solid fa-search mr-3' />
                     {

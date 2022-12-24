@@ -3,7 +3,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { setCategory } from '../store/userSlice';
+import { setCategory, setSearchFocus } from '../store/userSlice';
 
 const SearchCard = ({name, description, featureImage, link}) => {
 
@@ -31,12 +31,13 @@ const SearchCard = ({name, description, featureImage, link}) => {
             // user = Object.assign({}, user, {category : name})
             // dispatch(setCategory(name));
             let nn = encodeURI(link)
-            console.log('/post/' + nn)
+            // console.log('/post/' + nn)
             router.push('/post/' + nn);
+            dispatch(setSearchFocus(false))
             e.stopPropagation();
           }}
             style={{
-                backgroundImage: 'linear-gradient(140deg, var(--color-bg-p) 35% , rgba(18,0,36,0)), url(' + featureImage + ')'}}
+                backgroundImage: 'linear-gradient(140deg, var(--color-bg-p) 35% , rgba(18,0,36,0))'}}
                     >
         <h3 className='text-2xl text-center font-semibold'>
             {name}
