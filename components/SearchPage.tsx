@@ -72,7 +72,7 @@ export default function SearchPage(){
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-2 my-auto mb-2">
                 {
-                    rs.map(
+                    rs?.map(
                     (post : any) => 
                         <SearchCard 
                             name={post} 
