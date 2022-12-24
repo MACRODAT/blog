@@ -92,7 +92,7 @@ export default function SideNav(){
                           </p>
 
                           {
-                          children.length > 0 ?
+                          children?.length > 0 ?
                             !menus.get(el) ?
                             <i className='col-span-1 p-0 m-0 text-base cursor-pointer fa-solid fa-angle-down mx-2 
                                           iconaligncenter'

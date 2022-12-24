@@ -43,7 +43,7 @@ export default function SearchPage(){
                 <h2 className='my-auto text-xl text-center font-regular font2 font-bold text-[#120024]'>
                     <i className='fa-solid fa-search mr-3' />
                     {
-                        searchText.length > 0 
+                        searchText?.length > 0 
                         ?
                         <p>Search results for <em>{searchText}</em></p>
                         :
@@ -57,11 +57,11 @@ export default function SearchPage(){
                     
                     <br />
                     {
-                        rs.length > 0 ? 
+                        rs?.length > 0 ? 
                         <i className="my-2 fa-solid fa-arrow-down-long text-xl text-[#120024] motion-safe:animate-bounce"></i>
                         :
                         (
-                            searchText.length > 0 ? 
+                            searchText?.length > 0 ? 
                         
                             <i className="my-2 fa-solid fa-ban text-xl text-[#120024] motion-safe:animate-bounce"></i>
                             :

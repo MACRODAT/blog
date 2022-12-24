@@ -38,7 +38,7 @@ class searchEngine
     
     binarySearch_lower(nums: object[], target: string): number {
         let left: number = 0;
-        let right: number = nums.length - 1;
+        let right: number = nums?.length - 1;
     
         while (left <= right) {
             const mid: number = Math.floor((left + right) / 2);
@@ -61,14 +61,14 @@ class searchEngine
         let sr = txt.toUpperCase().split(' ');
         let rs = Array(100).fill(0);
         sr.forEach(s => {
-            if (s.trim().length > 2){
+            if (s.trim()?.length > 2){
                 let gb = 0;
 
                 gb = bsearch.le(this.data, s, (a,b) => {
                     return a > b;
                 });
                 let i = gb + 1;
-                while (i < this.data.length){
+                while (i < this.data?.length){
                     if (this.data[i] == undefined || !String(this.data[i][0]).startsWith(s)){
                         break;
                     }
@@ -77,7 +77,7 @@ class searchEngine
                 // console.log(i - gb);
                 if (i - gb < 20){
                     let i = gb + 1;
-                    while (i < this.data.length){
+                    while (i < this.data?.length){
                         if (this.data[i] == undefined || !String(this.data[i][0]).startsWith(s)){
                             break;
                         }
