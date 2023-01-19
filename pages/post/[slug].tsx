@@ -52,6 +52,8 @@ const PostDetails = ({ post} : {post : any}) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   let theme = useSelector(state => state.theming.current);
+  let loggedIn = useSelector(state => state.auth.loggedIn);
+
   let rt = useRouter();
   let showImage = true;
   if (post.featureImage == undefined || post.featureImage.url == undefined){
@@ -371,7 +373,7 @@ const PostDetails = ({ post} : {post : any}) => {
             ''
           }
           {
-              post.postdifficulty != 'NONE' ?
+              loggedIn && post.postdifficulty != 'NONE' ?
               <button 
                     onClick={() => likeDocumentAndUpdateForm(post.link)}
                     className={
