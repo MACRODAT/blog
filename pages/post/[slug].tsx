@@ -202,9 +202,9 @@ const PostDetails = ({ post} : {post : any}) => {
               className={
                 theme == 'light' ?
                 ( showCode ?
-                  "border-r-2 border-l-2 border-pink-500 bg-pink-500/10 p-2 rounded-t-lg cursor-pointer transition duration-150 mb-0"
+                  "border-r-2 border-l-2 border-pink-500 bg-pink-500/10 p-2 rounded-t-lg cursor-pointer transition duration-150 mb-0 md:ml-5"
                   :
-                  "border-r-2 border-l-2 border-sky-500 p-2 rounded-lg cursor-pointer transition duration-150"
+                  "border-r-2 border-l-2 border-sky-500 p-2 rounded-lg cursor-pointer transition duration-150 w-64"
                 )
                 :
                 ( showCode ?

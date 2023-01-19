@@ -97,9 +97,9 @@ const Account = () => {
                               setFontSize(e.target.value)
                             }}
                             style={{width: "100%"}}>
-                    <option className='text-sm' value={0.85}>Small</option>
-                    <option className='text-md' value={1}>Normal</option>
-                    <option className='text-lg' value={1.15}>Large</option>
+                    <option className='text-sm' value={0.9}>Small</option>
+                    <option className='text-md' value={1.05}>Normal</option>
+                    <option className='text-lg' value={1.25}>Large</option>
                   </select>
                 </div>
 
